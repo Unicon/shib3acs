@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+
+  idp:
+    build:
+      context: ./idp/
+      args:
+        - custom_acs_dns_prefix=YOUR_ACS_DNS_PREFIX
+        - custom_acs_rdc_location=YOUR_ACS_RDC_LOCATION
+    depends_on: 
+     - ldap
+    environment:
+     - JETTY_MAX_HEAP=64m
+     - JETTY_BROWSER_SSL_KEYSTORE_PASSWORD=password
+     - JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD=password
+    expose: 
+     - "4443"
+    networks:
+     - back
+    ports:
+     - "80:80"
+     - "443:4443"
+
+  ldap:
+    build: ./ldap/
+    networks:
+     - back
+
+networks:
+  back:    
+    driver: bridge
