@@ -1371,9 +1371,9 @@ This project details the steps required to host a Shibboleth 3 IdP in a Docker S
     - Upload the `idp-metadata.xml` metadata file using the [TestShib Service - Registration Page](https://www.testshib.org/register.html).
     - Screenshot:
     - ![TestShib Registration Form](README/screenshots/testshib-registration-form.png)
-    - You can obtain the metadata file in one of two ways:
-        - Locate the file in this `shib3azure` project that you cloned at `idp/shibboleth-idp/metadata/idp-metadata.xml`.  in fact, you edited this file to provide your entityID in a previous step.
-        - Locate and download it from the docker swarm container that you deployed.  first, determine the IdP container-id using `docker ps` find the container-id for the `shib3azure_idp` image.  then, download the IdP metadata file using `docker cp IDP_CONTAINER_ID:/opt/shibboleth-idp/metadata/idp-metadata.xml idp-metadata.xml` replacing `IDP_CONTAINER_ID` with the container-id determined via `docker ps`.
+    - To obtain the metadata file, locate and download it from the docker swarm container that you deployed:
+          - first, determine the IdP container-id using `docker ps` find the container-id for the `shib3azure_idp` image.
+          - then, download the IdP metadata file using `docker cp IDP_CONTAINER_ID:/opt/shibboleth-idp/metadata/idp-metadata.xml idp-metadata.xml`, replacing `IDP_CONTAINER_ID` with the container-id determined via `docker ps`.
     - Please note, it is important that the filename is unique and obscure.  Your unique file name is the index to your metadata. If you don't want someone else to inadvertently change your metadata, you must choose a truly unique file name. If, at some point, you want to change your metadata, you will upload a file with the same file name. The file name is case sensitive.
     - After uploading, this will take a few minutes to refresh and become available.
     - Screenshot:
